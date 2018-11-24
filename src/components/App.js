@@ -26,7 +26,6 @@ class App extends Component {
   }
 
   checkYourStatus = prop => {
-    console.log("Your email: " + this.state.email);
     fetch(API + DEFAULT_QUERY + "?email=" + this.state.email)
     .then(response => response.json())
     .then(data => this.setState({ statuses: data }));
@@ -72,9 +71,10 @@ class App extends Component {
                     type="text"
                     name="name"
                     className="input"
+                    onChange={(e) => this.setUserEmail(e)}
                   />
                 </label>
-                <Button title="WYŚLIJ" />
+                <Button title="WYŚLIJ" handleClick={() => this.checkYourStatus()}/>
               </form>
             </div>
             : null
