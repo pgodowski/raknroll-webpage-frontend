@@ -6,6 +6,7 @@ import logo from '../assets/logo.png';
 import hackyeah from '../assets/hackyeah.png';
 
 import './app.sass';
+import UserTable from './UserTable';
 
 const API = 'https://raknroll-api.herokuapp.com/';
 const DEFAULT_QUERY = 'users';
@@ -104,6 +105,7 @@ class App extends Component {
             </div>
             : null
           }
+        {this.state.statuses.length > 0 && (<UserTable users={this.state.statuses}/>)}
         </main>
         <footer className="footer">
           <img src={hackyeah} className="footer__logo" alt="hackyeah" />
