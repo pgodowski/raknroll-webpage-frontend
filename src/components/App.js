@@ -7,16 +7,32 @@ import hackyeah from '../assets/hackyeah.png';
 
 import './app.sass';
 
+const API = 'https://raknroll-api.herokuapp.com/';
+const DEFAULT_QUERY = 'users';
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      button: 0
+      button: 0,
+      email: "",
+      statuses: []
     }
   }
 
   handleClick = prop => {
     this.setState({ button: prop })
+  }
+
+  checkYourStatus = prop => {
+    console.log("Your email: " + this.state.email);
+    fetch(API + DEFAULT_QUERY)
+    .then(response => response.json())
+    .then(data => this.setState({ statuses: data }));
+  }
+
+  setUserEmail = e => {
+    this.setState({email: e.target.value});
   }
 
   render() {
@@ -36,7 +52,7 @@ class App extends Component {
               </p>
               <div className="button-container">
                 <Button title="WYSYŁAŁEM SAMODZIELNIE" handleClick={() => this.handleClick(1)} />
-                <Button title="PRZEKAZANE SALONOWI" handleClick={() => this.handleClick(2)} />
+                <Button title="PRZEKAZANE SALONOWI" handleClick={() => this.handleClick(2)}/>
               </div>
             </div>
             : null}
@@ -80,9 +96,10 @@ class App extends Component {
                     type="text"
                     name="name"
                     className="input"
+                    onChange={(e) => this.setUserEmail(e)}
                   />
                 </label>
-                <Button title="WYŚLIJ" />
+                <Button title="WYŚLIJ" handleClick={() => this.checkYourStatus()}/>
               </form>
             </div>
             : null
