@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 const UserRow = props => {
       return (
         <tr>
-          <td>{props.user.name} twoje włosy są juz u nas! Pobierz podziękowanie pod <a href={props.user.link}>tym linkiem</a></td>
-          <td>{props.user.email}</td>
+          <td>{props.user.name} twoje włosy są juz u nas!</td>
+          <td><a href={props.user.link}>Kliknij w link</a></td>
         </tr>
       );
   };
@@ -19,7 +19,7 @@ const UserRow = props => {
               <thead>
                 <tr>
                   <th>Opis</th>
-                  <th>Email</th>
+                  <th>Pobierz</th>
                 </tr>
               </thead>
               {users}
