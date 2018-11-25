@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-
-import Button from './Button';
-
-import logo from '../assets/logo.png';
 import hackyeah from '../assets/hackyeah.png';
-
+import logo from '../assets/logo.png';
 import './app.sass';
+import Button from './Button';
 import UserTable from './UserTable';
+
+
+
 
 const API = 'https://raknroll-api.herokuapp.com/';
 const DEFAULT_QUERY = 'users';
@@ -34,6 +34,11 @@ class App extends Component {
         this.setState({ afterFirstFetch: true});
       });
       console.log("First fetch: " + this.state.afterFirstFetch);
+  }
+
+  checkOnceAgain = e => {
+    this.setState({ statuses: [] });
+    this.setState({ afterFirstFetch: false});
   }
 
   setUserEmail = e => {
@@ -110,7 +115,8 @@ class App extends Component {
             : null
           }</div>)}
           <div className="thankyou-container">
-            {this.state.statuses.length > 0 && (<UserTable users={this.state.statuses} />)}
+            {this.state.statuses.length > 0 && (<div><UserTable users={this.state.statuses} />
+            <Button title="WRÓĆ" handleClick={() => this.checkOnceAgain()} /></div>)}
           </div>
           <div className="no-results-container">
             {this.state.statuses.length === 0 && this.state.afterFirstFetch && ("Niestety, nie udało nam się znaleźć Twojej przesyłki. Skontaktuj się z nami telefonicznie: 22 841 27 47 Pracujemy od PN-PT w godzinach 9-16")}
