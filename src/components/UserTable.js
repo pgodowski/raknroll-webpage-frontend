@@ -8,7 +8,7 @@ const UserTable = props => {
         <div>
             <h1>Hura! {user.name}!</h1>
             <h2>Miło nam poinformować, że Twoje włosy są juz u nas.</h2>
-            <h3><a className="thankyou-link" href={API + user.name}>Kliknij, aby pobrać podziękowanie</a></h3>
+            <h3><a className="thankyou-link" href={API + user.name} target="_blank">Kliknij, aby pobrać podziękowanie</a></h3>
         </div>
     );
 }
