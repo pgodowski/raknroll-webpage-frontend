@@ -27,12 +27,12 @@ class App extends Component {
 
   checkYourStatus = prop => {
     fetch(API + DEFAULT_QUERY + "?email=" + this.state.email)
-    .then(response => response.json())
-    .then(data => this.setState({ statuses: data }));
+      .then(response => response.json())
+      .then(data => this.setState({ statuses: data }));
   }
 
   setUserEmail = e => {
-    this.setState({email: e.target.value});
+    this.setState({ email: e.target.value });
   }
 
   render() {
@@ -46,13 +46,13 @@ class App extends Component {
 
         <main className="main">
           {button === 0 ?
-            <div>
+            <div className="container">
               <p className="paragraph">
                 DZIĘKUJEMY ZA TWOJE WARKOCZE! ABY SPRAWDZIĆ, CZY DO NAS DOTARŁY WYBIERZ SPOSÓB W JAKI BYŁY PRZEKAZANE
               </p>
               <div className="button-container">
-                <Button title="WYSYŁAŁEM SAMODZIELNIE" handleClick={() => this.handleClick(1)} />
-                <Button title="PRZEKAZANE SALONOWI" handleClick={() => this.handleClick(2)}/>
+                <Button title="WYSYŁANE SAMODZIELNIE" handleClick={() => this.handleClick(1)} />
+                <Button title="PRZEKAZANE SALONOWI" handleClick={() => this.handleClick(2)} />
               </div>
             </div>
             : null}
@@ -65,16 +65,14 @@ class App extends Component {
               </p>
 
               <form className="form">
-                <label>
-                  <input
-                    placeholder="EMAIL"
-                    type="text"
-                    name="name"
-                    className="input"
-                    onChange={(e) => this.setUserEmail(e)}
-                  />
-                </label>
-                <Button title="SPRAWDŹ TERAZ" handleClick={() => this.checkYourStatus()}/>
+                <input
+                  placeholder="EMAIL"
+                  type="text"
+                  name="name"
+                  className="input"
+                  onChange={(e) => this.setUserEmail(e)}
+                />
+                <Button title="SPRAWDŹ TERAZ" handleClick={() => this.checkYourStatus()} />
               </form>
             </div>
             : null
@@ -100,13 +98,13 @@ class App extends Component {
                     onChange={(e) => this.setUserEmail(e)}
                   />
                 </label>
-                <Button title="SPRAWDŹ TERAZ" handleClick={() => this.checkYourStatus()}/>
+                <Button title="SPRAWDŹ TERAZ" handleClick={() => this.checkYourStatus()} />
               </form>
             </div>
             : null
           }
           <div className="thankyou-container">
-            {this.state.statuses.length > 0 && (<UserTable users={this.state.statuses}/>)}
+            {this.state.statuses.length > 0 && (<UserTable users={this.state.statuses} />)}
           </div>
         </main>
         <footer className="footer">
