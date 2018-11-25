@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-const API = "https://boiling-everglades-94066.herokuapp.com/thankyou?firstName=";
+const API = "https://raknroll-pdf.herokuapp.com/thankyou?firstName=";
 const UserRow = props => {
       return (
         <tr>
