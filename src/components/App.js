@@ -45,6 +45,13 @@ class App extends Component {
     this.setState({ email: e.target.value });
   }
 
+  onKeyPressAction = e => {
+    if(e.key === "Enter") {
+      e.preventDefault();
+      this.checkYourStatus();
+    }
+  }
+
   render() {
     const { button } = this.state
 
@@ -75,13 +82,14 @@ class App extends Component {
                 WPISZ ADRES EMAIL, KTÓRY PODAŁEŚ/PODAŁAŚ W OŚWIADCZENIU
               </p>
 
-              <form className="form">
+              <form className="form" onSubmit={this.handleSubmit}>
                 <input
                   placeholder="EMAIL"
                   type="text"
                   name="name"
                   className="input"
                   onChange={(e) => this.setUserEmail(e)}
+                  onKeyPress={(e) => this.onKeyPressAction(e)}
                 />
                 <Button title="SPRAWDŹ TERAZ" handleClick={() => this.checkYourStatus()} />
               </form>
@@ -107,6 +115,7 @@ class App extends Component {
                     name="name"
                     className="input"
                     onChange={(e) => this.setUserEmail(e)}
+                    onKeyPress={(e) => this.onKeyPressAction(e)}
                   />
                 </label>
                 <Button title="SPRAWDŹ TERAZ" handleClick={() => this.checkYourStatus()} />
