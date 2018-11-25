@@ -17,7 +17,8 @@ class App extends Component {
     this.state = {
       button: 0,
       email: "",
-      statuses: []
+      statuses: [],
+      afterFirstFetch: false
     }
   }
 
@@ -28,7 +29,11 @@ class App extends Component {
   checkYourStatus = prop => {
     fetch(API + DEFAULT_QUERY + "?email=" + this.state.email)
       .then(response => response.json())
-      .then(data => this.setState({ statuses: data }));
+      .then(data => {
+        this.setState({ statuses: data });
+        this.setState({ afterFirstFetch: true});
+      });
+      console.log("First fetch: " + this.state.afterFirstFetch);
   }
 
   setUserEmail = e => {
@@ -45,6 +50,7 @@ class App extends Component {
         </header>
 
         <main className="main">
+        {this.state.statuses.length === 0 && (<div>
           {button === 0 ?
             <div className="container">
               <p className="paragraph">
@@ -102,9 +108,12 @@ class App extends Component {
               </form>
             </div>
             : null
-          }
+          }</div>)}
           <div className="thankyou-container">
             {this.state.statuses.length > 0 && (<UserTable users={this.state.statuses} />)}
+          </div>
+          <div className="no-results-container">
+            {this.state.statuses.length === 0 && this.state.afterFirstFetch && ("Niestety, nie udało nam się znaleźć Twojej przesyłki. Skontaktuj się z nami telefonicznie: 22 841 27 47 Pracujemy od PN-PT w godzinach 9-16")}
           </div>
         </main>
         <footer className="footer">
