@@ -105,7 +105,9 @@ class App extends Component {
             </div>
             : null
           }
-        {this.state.statuses.length > 0 && (<UserTable users={this.state.statuses}/>)}
+          <div className="thankyou-container">
+            {this.state.statuses.length > 0 && (<UserTable users={this.state.statuses}/>)}
+          </div>
         </main>
         <footer className="footer">
           <img src={hackyeah} className="footer__logo" alt="hackyeah" />

@@ -1,32 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const API = "https://raknroll-pdf.herokuapp.com/thankyou?firstName=";
-const UserRow = props => {
-      return (
-        <tr>
-          <td>{props.user.name} twoje włosy są juz u nas!</td>
-          <td><a href={API + props.user.name}>Kliknij w link</a></td>
-        </tr>
-      );
-  };
 
- const UserTable = props => {
-        var users = [];
-        props.users.forEach(user => {
-            users.push(<tbody><UserRow user={user}/></tbody>)
-        });
-        return (
-            <table className='table'>
-              <thead>
-                <tr>
-                  <th>Opis</th>
-                  <th>Pobierz</th>
-                </tr>
-              </thead>
-              {users}
-            </table>
-          );
-  }
+const UserTable = props => {
+    const user = props.users[0];
+    return (
+        <div>
+            <h1>Hura! {user.name}!</h1>
+            <h2>Miło nam poinformować, że Twoje włosy są juz u nas.</h2>
+            <h3><a className="thankyou-link" href={API + user.name}>Kliknij, aby pobrać podziękowanie</a></h3>
+        </div>
+    );
+}
 
-  export default UserTable;
+export default UserTable;
 
