@@ -74,7 +74,7 @@ class App extends Component {
                     onChange={(e) => this.setUserEmail(e)}
                   />
                 </label>
-                <Button title="WYŚLIJ" handleClick={() => this.checkYourStatus()}/>
+                <Button title="SPRAWDŹ TERAZ" handleClick={() => this.checkYourStatus()}/>
               </form>
             </div>
             : null
